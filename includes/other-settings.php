@@ -44,7 +44,7 @@ function snn_register_other_settings() {
 
     add_settings_field(
         'enqueue_gsap',
-        'Enable GSAP and Lottie Element',
+        'Enable GSAP / Lottie Element',
         'snn_enqueue_gsap_callback',
         'snn-other-settings',
         'snn_other_settings_section'
@@ -60,7 +60,7 @@ function snn_register_other_settings() {
 
     add_settings_field(
         'auto_update_bricks',
-        'Auto Update Bricks Theme (Main Theme Only)',
+        'Auto Update Bricks Theme',
         'snn_auto_update_bricks_callback',
         'snn-other-settings',
         'snn_other_settings_section'
@@ -68,7 +68,7 @@ function snn_register_other_settings() {
 
     add_settings_field(
         'move_bricks_menu',
-        'Move Bricks Menu to End',
+        'Move Bricks Builder Menu',
         'snn_move_bricks_menu_callback',
         'snn-other-settings',
         'snn_other_settings_section'
@@ -76,7 +76,7 @@ function snn_register_other_settings() {
 
     add_settings_field(
         'disable_comments',
-        'Disable Comments',
+        'Disable Comments Sitewide',
         'snn_disable_comments_callback',
         'snn-other-settings',
         'snn_other_settings_section'
@@ -84,7 +84,7 @@ function snn_register_other_settings() {
 
     add_settings_field(
         'enable_thumbnail_column',
-        'Enable Thumbnail Column in Post Tables',
+        'Enable Thumbnail in Posts Dashboard',
         'snn_enable_thumbnail_column_callback',
         'snn-other-settings',
         'snn_other_settings_section'
@@ -143,17 +143,18 @@ function snn_other_settings_section_callback() {
 function snn_enqueue_gsap_callback() {
     $options = get_option('snn_other_settings');
     ?>
-    <input type="checkbox" name="snn_other_settings[enqueue_gsap]" value="1" <?php checked(1, isset($options['enqueue_gsap']) ? $options['enqueue_gsap'] : 0); ?>>
+    <label>
+        <input type="checkbox" name="snn_other_settings[enqueue_gsap]" value="1" <?php checked(1, isset($options['enqueue_gsap']) ? $options['enqueue_gsap'] : 0); ?>>
+        Enable the GSAP library and its associated scripts. GSAP is a powerful JavaScript animation library that allows you to create complex and interactive animations.
+    </label>
     <p>
-        Enabling this setting will enqueue the GSAP library and its associated scripts on your website.<br>
-        GSAP is a powerful JavaScript animation library that allows you to create complex and interactive animations.<br><br>
+        <br>
         - Ability to create GSAP animations with just data-animate attributes.<br>
         - gsap.min.js: The core GSAP library.<br>
         - ScrollTrigger.min.js: A GSAP plugin that enables scroll-based animations.<br>
         - gsap-data-animate.js: A custom script that utilizes GSAP and ScrollTrigger for animating elements based on data attributes.<br>
-        - lottie.min.js and Lottie Element<br><br>
-        Read <a href="https://github.com/sinanisler/snn-brx-child-theme/wiki/GSAP-ScrollTrigger-Animations" target="_blank">
-            Documentation and Examples</a> for more details.
+        - lottie.min.js and Lottie Element.<br><br>
+        Read the <a href="https://github.com/sinanisler/snn-brx-child-theme/wiki/GSAP-ScrollTrigger-Animations" target="_blank"> Documentation and Examples</a> for more details.
     </p>
     <?php
 }
@@ -162,21 +163,30 @@ function snn_revisions_limit_callback() {
     $options = get_option('snn_other_settings');
     $value = isset($options['revisions_limit']) ? intval($options['revisions_limit']) : '';
     ?>
-    <input type="number" name="snn_other_settings[revisions_limit]" value="<?php echo esc_attr($value); ?>" placeholder="500" min="0">
+    <label>
+        <input type="number" name="snn_other_settings[revisions_limit]" value="<?php echo esc_attr($value); ?>" placeholder="50" min="0">
+        Limit the revisions number. The revision system saves versions of posts and pages each time you Edit, Save or Publish a post or page. Set to a sensible number or disable completely with "0".
+    </label>
     <?php
 }
 
 function snn_auto_update_bricks_callback() {
     $options = get_option('snn_other_settings');
     ?>
-    <input type="checkbox" name="snn_other_settings[auto_update_bricks]" value="1" <?php checked(1, isset($options['auto_update_bricks']) ? $options['auto_update_bricks'] : 0); ?>>
+    <label>
+        <input type="checkbox" name="snn_other_settings[auto_update_bricks]" value="1" <?php checked(1, isset($options['auto_update_bricks']) ? $options['auto_update_bricks'] : 0); ?>>
+        Auto-update Bricks Builder Theme. Does not auto-update any Bricks Builder child theme.
+    </label>
     <?php
 }
 
 function snn_move_bricks_menu_callback() {
     $options = get_option('snn_other_settings');
     ?>
-    <input type="checkbox" name="snn_other_settings[move_bricks_menu]" value="1" <?php checked(1, isset($options['move_bricks_menu']) ? $options['move_bricks_menu'] : 0); ?>>
+    <label>
+        <input type="checkbox" name="snn_other_settings[move_bricks_menu]" value="1" <?php checked(1, isset($options['move_bricks_menu']) ? $options['move_bricks_menu'] : 0); ?>>
+        Move the Bricks Builder menu to the <strong>bottom</strong> of the menu side panel.
+    </label>
     <?php
 }
 
@@ -185,7 +195,7 @@ function snn_disable_comments_callback() {
     ?>
     <label>
         <input type="checkbox" name="snn_other_settings[disable_comments]" value="1" <?php checked(1, isset($options['disable_comments']) ? $options['disable_comments'] : 0); ?> >
-        Disable all comments on the site
+        Disable the comment system.
     </label>
     <?php
 }
@@ -193,11 +203,10 @@ function snn_disable_comments_callback() {
 function snn_enable_thumbnail_column_callback() {
     $options = get_option('snn_other_settings');
     ?>
-    <input type="checkbox" name="snn_other_settings[enable_thumbnail_column]" value="1" <?php checked(1, isset($options['enable_thumbnail_column']) ? $options['enable_thumbnail_column'] : 0); ?>>
-    <p>
-        Enabling this setting will add a "Thumbnail" column to your post tables in the admin dashboard.<br>
-        This allows you to see the featured image of each post directly in the list view.
-    </p>
+    <label>
+        <input type="checkbox" name="snn_other_settings[enable_thumbnail_column]" value="1" <?php checked(1, isset($options['enable_thumbnail_column']) ? $options['enable_thumbnail_column'] : 0); ?>>
+        Add a "Thumbnail" column in the posts dashboard. This allows you to see the featured image of each post in the posts' list view.
+    </label>
     <?php
 }
 
@@ -205,10 +214,9 @@ function snn_disable_dashboard_widgets_callback() {
     $options = get_option('snn_other_settings');
     ?>
     <input type="checkbox" name="snn_other_settings[disable_dashboard_widgets]" value="1" <?php checked(1, isset($options['disable_dashboard_widgets']) ? $options['disable_dashboard_widgets'] : 0); ?>>
-    <p>
-        Enabling this setting will remove several default dashboard widgets from the WordPress admin dashboard.<br>
-        This helps in decluttering the dashboard and focusing on the essential information.
-    </p>
+    <label>
+        Disable default dashboard widgets in the admin dashboard. Declutters the dashboard and helps with focusing on the essential information.
+    </label>
     <?php
 }
 
@@ -218,7 +226,7 @@ function snn_dashboard_custom_metabox_content_callback() {
     ?>
     <textarea name="snn_other_settings[dashboard_custom_metabox_content]" rows="5" class="large-text" style="max-width:600px"><?php echo esc_textarea($content); ?></textarea>
     <p>
-        Enter the HTML content for the custom dashboard metabox. You can include HTML tags for formatting.
+        Enter HTML content for the custom dashboard metabox. Supports HTML tags for formatting.
     </p>
     <?php
 }
