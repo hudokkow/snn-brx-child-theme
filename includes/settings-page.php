@@ -21,25 +21,16 @@ function snn_settings_page_callback() {
     ?>
     <div class="wrap">
         <h1><?php echo $dynamic_title; ?> - Bricks Builder Child Theme Settings</h1>
-        <div style="max-width:660px; margin-bottom:80px ">
-        <p  style="font-size: ; line-height:24px !important;  ">
-            SNN-BRX Child theme is designed to give you the tools and solutions for <a href="https://bricksbuilder.io/" target="_blank">Bricks Builder</a>.
-            Post Types, Custom Fields, Taxonomies, SMTP Mail Setting, Custom Login Design,
-            Math Chaptcha for Login/Register, Security Features, 404 Logs, 301 Redirects and some Block Editor Features.
-            Everything is straightforward and ready to use. <br><br>
-            Enjoy building your site.<br><br>
-
-            <a href="https://academy.bricksbuilder.io/topic/getting-started/" target="_blank"
-            style="font-size: 16px; text-decoration:none; line-height:40px " >Bricks Builder Docs ➤</a><br>
-
-            <a href="https://www.youtube.com/@bricksbuilder/videos" target="_blank"
-            style="font-size: 16px; text-decoration:none; line-height:40px " >Bricks Builder Videos ➤</a><br>
-
-
-        </p>
-
+        <div style="max-width:660px; margin-bottom:80px">
+            <p>SNN-BRX Child theme is designed to give you extra tools and solutions for <a href="https://bricksbuilder.io/" target="_blank">Bricks Builder</a>.</p>
+            <p>Custom Post Types, Custom Fields, Taxonomies, SMTP Mail Settings, Custom Login Design, Math Chaptcha for Login/Register, Security Features, 404 Logs, 301 Redirects and some Block Editor Features.</p>
+            <p>Everything is straightforward and ready to use. For more information about Bricks Builder, use the links below.</p>
+            <p><strong>Enjoy building your site.</strong></p>
+            <p><a href="https://academy.bricksbuilder.io/topic/getting-started/" target="_blank"
+                style="font-size: 14px; text-decoration:none; line-height:20px">Bricks Builder Docs &#10138;</a></p>
+            <p><a href="https://www.youtube.com/@bricksbuilder/videos" target="_blank"
+                style="font-size: 14px; text-decoration:none; line-height:20px">Bricks Builder Videos &#10138;</a></p>
         </div>
-
         <form method="post" action="options.php">
             <?php
             settings_fields('snn_settings_group');
@@ -48,29 +39,6 @@ function snn_settings_page_callback() {
             ?>
         </form>
     </div>
-
-    <style>
-        .wrap {
-        }
-        .tt1 {
-            width: 880px;
-            height: 40px;
-        }
-        .style_css, .head-css, #wp_head_css_frontend, #wp_footer_html_frontend, #wp_head_html_frontend {
-            width: 880px;
-            height: 220px;
-        }
-        [type="checkbox"] {
-            width: 18px !important;
-            height: 18px !important;
-            float: left;
-            margin-right: 10px !important;
-        }
-        #snn_custom_css {
-            width: 880px;
-            height: 330px;
-        }
-    </style>
     <?php
 }
 
@@ -79,7 +47,7 @@ function snn_register_settings() {
 
     add_settings_section(
         'snn_general_section',
-        'General Setting',
+        'General Settings',
         'snn_general_section_callback',
         'snn-settings'
     );
@@ -95,13 +63,12 @@ function snn_register_settings() {
 add_action('admin_init', 'snn_register_settings');
 
 function snn_general_section_callback() {
-    echo '<p>General setting for the SNN menu page.</p>';
+    echo '<p>The name of the SNN Main Menu in the side panel.</p>';
 }
 
 function snn_menu_title_field_callback() {
     $menu_title = get_option('snn_menu_title', 'SNN Settings');
     echo '<input type="text" name="snn_menu_title" value="' . esc_attr($menu_title) . '" class="regular-text">';
-    echo '<p>You can rename SNN Settings title.</p>';
 }
 
 
@@ -120,7 +87,5 @@ function mytheme_customize_register( $wp_customize ) {
     ) );
 }
 add_action( 'customize_register', 'mytheme_customize_register' );
-
-
 
 ?>
