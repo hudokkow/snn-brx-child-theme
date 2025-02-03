@@ -44,14 +44,14 @@ function snn_register_media_settings() {
 
     add_settings_section(
         'snn_media_settings_section',
-        'Media Settings',
+        '',
         'snn_media_settings_section_callback',
         'snn-media-settings'
     );
 
     add_settings_field(
         'redirect_media_library',
-        'Redirect Media Library Grid View to List View',
+        'Media Library List View',
         'snn_redirect_media_library_callback',
         'snn-media-settings',
         'snn_media_settings_section'
@@ -84,7 +84,9 @@ function snn_redirect_media_library_callback() {
     $options = get_option('snn_media_settings');
     ?>
     <input type="checkbox" name="snn_media_settings[redirect_media_library]" value="1" <?php checked(1, isset($options['redirect_media_library']) ? $options['redirect_media_library'] : 0); ?>>
-    <p>Media list view default.</p>
+    <label>
+        Enable Media list view as default.
+    </label>
     <?php
 }
 
@@ -92,7 +94,9 @@ function snn_media_categories_callback() {
     $options = get_option('snn_media_settings');
     ?>
     <input type="checkbox" name="snn_media_settings[media_categories]" value="1" <?php checked(1, isset($options['media_categories']) ? $options['media_categories'] : 0); ?> >
-    <p>Enable Media Categories with drag-and-drop functionality. (right click on grid view)</p>
+    <label>
+        Enable Media Categories with drag-and-drop functionality (right click on grid view).
+    </label>
     <?php
 }
 
