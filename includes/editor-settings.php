@@ -16,8 +16,13 @@ function custom_editor_settings_page() {
 function snn_render_editor_settings_page() {
     ?>
     <div class="wrap">
-        <h1>Bricks Builder Editor Settings</h1>
-        <form method="post" action="options.php">
+        <h1 class="admin-notices-placeholder"></h1>
+
+        <div class="bricks-admin-title-wrapper">
+            <h1 class="title"><?php esc_html_e( 'Editor Settings', 'snn' ); ?></h1>
+        </div>
+
+        <form id="snn-editor-settings" class="bricks-admin-wrapper" method="post" action="options.php">
             <?php
             settings_fields('snn_editor_settings_group');
             do_settings_sections('snn-editor-settings');
@@ -38,7 +43,7 @@ function snn_register_editor_settings() {
 
     add_settings_section(
         'snn_editor_settings_section',
-        'Editor Settings',
+        'Settings',
         'snn_editor_settings_section_callback',
         'snn-editor-settings'
     );
@@ -92,9 +97,7 @@ function snn_sanitize_editor_settings($input) {
 
 function snn_editor_settings_section_callback() {
     ?>
-    <p>
-        Configure Bricks Builder editor-specific settings below.<br>
-    </p>
+    <p class="description">Configure Bricks Builder editor-specific settings below.</p>
     <?php
 }
 
@@ -103,12 +106,11 @@ function snn_render_checkbox_field() {
     $checked = isset($options['snn_bricks_builder_color_fix']) ? $options['snn_bricks_builder_color_fix'] : 0;
     ?>
     <input type="checkbox" id="snn_bricks_builder_color_fix" name="snn_editor_settings[snn_bricks_builder_color_fix]" value="1" <?php checked(1, $checked, true); ?> />
-    <label for="snn_bricks_builder_color_fix">
-        Enable Bricks Builder Editor Color Fix<br>
-        This setting will show the primary global color variables inside all color palettes.<br>
+    <label for="snn_bricks_builder_color_fix">Enable Bricks Builder Editor Color Fix</label>
+    <p class="description">This setting will show the primary global color variables inside all color palettes.<br>
         It will load those color palettes as :root frontend colors as well.<br>
         Only create one Theme Style.
-    </label>
+    </p>
     <?php
 }
 
@@ -116,10 +118,8 @@ function snn_hide_element_icons_callback() {
     $options = get_option('snn_editor_settings');
     $checked = isset($options['hide_element_icons']) ? $options['hide_element_icons'] : 0;
     ?>
-    <label>
-        <input type="checkbox" name="snn_editor_settings[hide_element_icons]" value="1" <?php checked(1, $checked, true); ?>>
-        Hide Elements Icons on Bricks Editor
-    </label>
+    <input id="hide_element_icons" type="checkbox" name="snn_editor_settings[hide_element_icons]" value="1" <?php checked(1, $checked, true); ?>>
+    <label for="hide_element_icons" title="hide_element">Hide Element Icon</label>
     <?php
 }
 

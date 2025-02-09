@@ -6,6 +6,17 @@ define( 'SNN_PATH_ASSETS', trailingslashit( SNN_PATH . 'assets' ) );    // SNN a
 define( 'SNN_URL', trailingslashit( get_stylesheet_directory_uri() ) ); // SNN URL for enqueue files
 define( 'SNN_URL_ASSETS', trailingslashit( SNN_URL . 'assets' ) );      // SNN assets URL
 
+add_action('admin_enqueue_scripts', function () {
+    wp_enqueue_style( 'snn-admin', SNN_URL_ASSETS . 'css/snn-admin.css', [], filemtime(SNN_PATH_ASSETS . 'css/snn-admin.css'));
+});
+
+/*
+function snn_enqueue_admin_css() {
+    wp_enqueue_style( 'snn-admin', SNN_URL_ASSETS . 'css/snn-admin.css', [], filemtime(SNN_PATH_ASSETS . 'css/snn-admin.css'));
+}
+add_action( 'admin_enqueue_scripts', 'snn_enqueue_admin_css' );
+*/
+
 // Use custom-codes-here.php file for adding your custom JS and CSS codes.
 require_once SNN_PATH . '/custom-codes-here.php';
 
