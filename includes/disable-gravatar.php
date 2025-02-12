@@ -22,8 +22,11 @@ add_action('admin_init', 'snn_register_gravatar_setting');
 function snn_disable_gravatar_callback() {
     $options = get_option('snn_security_options');
     ?>
-    <input type="checkbox" name="snn_security_options[disable_gravatar]" value="1" <?php checked(isset($options['disable_gravatar']), 1); ?>>
-    <p><?php esc_html_e('Check this box to disable Gravatar support throughout the site.', 'snn'); ?></p>
+    <div class="setting-wrapper">
+        <input id="disable_gravatar" type="checkbox" name="snn_security_options[disable_gravatar]" value="1" <?php checked(isset($options['disable_gravatar']), 1); ?>>
+        <label for="disable_gravatar" title="hide_element">Disable Gravatar</label>
+        <p class="description"><?php esc_html_e('Disables Gravatar support throughout the site.', 'snn'); ?></p>
+    </div>
     <?php
 }
 
@@ -42,3 +45,4 @@ function snn_disable_gravatar($avatar, $id_or_email) {
     return '';
 }
 ?>
+

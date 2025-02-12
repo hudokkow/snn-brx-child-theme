@@ -26,8 +26,12 @@ add_action('admin_init', 'snn_remove_wp_version_setting_field');
 function snn_remove_wp_version_callback() {
     $options = get_option('snn_security_options');
     ?>
-    <input type="checkbox" name="snn_security_options[remove_wp_version]" value="1" <?php checked(isset($options['remove_wp_version']), 1); ?>>
-    <p><?php esc_html_e('Enabling this setting will remove the WordPress version number from your website\'s HTML source code.', 'snn'); ?></p>
+    <div class="setting-wrapper">
+        <input id="remove_wp_version" type="checkbox" name="snn_security_options[remove_wp_version]" value="1" <?php checked(isset($options['remove_wp_version']), 1); ?>>
+        <label for="remove_wp_version" title="hide_element">Disable WordPress' Version</label>
+        <p class="description"><?php esc_html_e('Disables WordPress\' version number from your website\'s HTML source code.', 'snn'); ?></p>
+    </div>
     <?php
 }
 ?>
+

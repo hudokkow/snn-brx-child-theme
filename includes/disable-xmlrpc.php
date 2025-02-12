@@ -23,8 +23,12 @@ add_action('admin_init', 'snn_disable_xmlrpc_setting_field');
 function snn_disable_xmlrpc_callback() {
     $options = get_option('snn_security_options');
     ?>
-    <input type="checkbox" name="snn_security_options[disable_xmlrpc]" value="1" <?php checked(isset($options['disable_xmlrpc']), 1); ?>>
-    <p><?php esc_html_e('Enabling this setting will disable the XML-RPC functionality in WordPress.', 'snn'); ?></p>
+    <div class="setting-wrapper">
+        <input id="disable_xmlrpc" type="checkbox" name="snn_security_options[disable_xmlrpc]" value="1" <?php checked(isset($options['disable_xmlrpc']), 1); ?>>
+        <label for="disable_xmlrpc" title="hide_element">Disable XML-RPC</label>
+        <p class="description"><?php esc_html_e('Disables WordPress\' XML-RPC functionality.', 'snn'); ?></p>
+    </div>
     <?php
 }
 ?>
+

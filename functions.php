@@ -38,8 +38,6 @@ require_once SNN_PATH . 'includes/301-redirect.php';
 require_once SNN_PATH . 'includes/smtp-settings.php';
 require_once SNN_PATH . 'includes/mail-logging.php';
 require_once SNN_PATH . 'includes/media-settings.php';
-require_once SNN_PATH . 'includes/disable-emojis.php';
-require_once SNN_PATH . 'includes/disable-gravatar.php';
 require_once SNN_PATH . 'includes/editor-settings.php'; 
 require_once SNN_PATH . 'includes/editor-color-global-sync.php'; 
 require_once SNN_PATH . 'includes/global-classes.php';

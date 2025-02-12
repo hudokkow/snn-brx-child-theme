@@ -32,8 +32,12 @@ add_action('admin_init', 'snn_remove_rss_setting_field');
 function snn_remove_rss_callback() {
     $options = get_option('snn_security_options');
     ?>
-    <input type="checkbox" name="snn_security_options[remove_rss]" value="1" <?php checked(isset($options['remove_rss']), 1); ?>>
-    <p><?php esc_html_e('Enabling this setting will remove the RSS feed links from your website\'s HTML source code.', 'snn'); ?></p>
+    <div class="setting-wrapper">
+        <input id="remove_rss" type="checkbox" name="snn_security_options[remove_rss]" value="1" <?php checked(isset($options['remove_rss']), 1); ?>>
+        <label for="remove_rss" title="hide_element">Disable RSS</label>
+        <p class="description"><?php esc_html_e('Disables RSS feed links from your website\'s HTML source code.', 'snn'); ?></p>
+    </div>
     <?php
 }
 ?>
+

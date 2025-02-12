@@ -14,8 +14,11 @@ add_action('admin_init', 'snn_setup_json_disable_field');
 function snn_json_disable_callback() {
     $options = get_option('snn_security_options');
     ?>
-    <input type="checkbox" name="snn_security_options[disable_json]" value="1" <?php checked(isset($options['disable_json']), 1); ?>>
-    <p><?php esc_html_e('Enabling this setting will disable the JSON API (wp-json) for users who are not logged in.', 'snn'); ?></p>
+    <div class="setting-wrapper">
+        <input id="disable_json" type="checkbox" name="snn_security_options[disable_json]" value="1" <?php checked(isset($options['disable_json']), 1); ?>>
+        <label for="disable_json" title="hide_element">Disable JSON-API</label>
+        <p class="description"><?php esc_html_e('Disables the JSON-API (wp-json) for users who are not logged in.', 'snn'); ?></p>
+    </div>
     <?php
 }
 
@@ -29,3 +32,4 @@ add_filter('rest_authentication_errors', function($result) {
     return $result;
 });
 ?>
+

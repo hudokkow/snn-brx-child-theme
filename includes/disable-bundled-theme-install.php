@@ -11,7 +11,7 @@ add_action('init', 'snn_disable_bundled_theme_install');
 function snn_disable_bundled_theme_install_setting_field() {
     add_settings_field(
         'disable_bundled_theme_install',
-        __('Disable Bundled Theme Install', 'snn'),
+        __('<label>Disable Bundled Theme Install</label>', 'snn'),
         'snn_disable_bundled_theme_install_callback',
         'snn-security',
         'snn_security_main_section'
@@ -22,8 +22,12 @@ add_action('admin_init', 'snn_disable_bundled_theme_install_setting_field');
 function snn_disable_bundled_theme_install_callback() {
     $options = get_option('snn_security_options');
     ?>
-    <input type="checkbox" name="snn_security_options[disable_bundled_theme_install]" value="1" <?php checked(isset($options['disable_bundled_theme_install']), 1); ?>>
-    <p><?php esc_html_e('Enabling this setting will disable bundled theme install when upgrading WordPress.', 'snn'); ?></p>
+    <div class="setting-wrapper">
+        <input id="disable_bundled_theme_install" type="checkbox" name="snn_security_options[disable_bundled_theme_install]" value="1" <?php checked(isset($options['disable_bundled_theme_install']), 1); ?>>
+        <label for="disable_bundled_theme_install" title="hide_element">Disable Bundled Theme Install</label>
+        <p class="description"><?php esc_html_e('Disables bundled theme install when upgrading WordPress core.', 'snn'); ?></p>
+    </div>
     <?php
 }
 ?>
+

@@ -164,3 +164,4 @@ function snn_validate_lostpassword_captcha( $errors, $user_login ) {
 }
 add_filter( 'lostpassword_post_errors', 'snn_validate_lostpassword_captcha', 10, 2 );
 ?>
+
